@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kite Images - Profile</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body class="profile-body">
+
+
+<header class="profile-navbar">
+
+    <div class="profile-logo">
+
+        <img src="/images/kite-logo3.svg" class="brand-logo" alt="Kite Images">
+
+    </div>
+
+
+    <a href="/logout" class="logout-button">
+        Log out
+    </a>
+
+</header>
+
+
+<main class="profile-container">
+
+
+    <div class="profile-card">
+
+
+        <!-- PROFILE PICTURE -->
+
+        <div class="big-profile-picture">
+
+
+            <img
+                    th:if="${user.profilePicture != null}"
+                    th:src="@{'/profile/image/' + ${user.id}}"
+                    alt="Profile Picture">
+
+
+            <div
+                    th:if="${user.profilePicture == null}"
+                    class="profile-placeholder">
+
+                <span th:text="${user.name.substring(0,1)}">
+                    A
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <h1 th:text="${user.name}">
+            Atharv
+        </h1>
+
+
+        <p
+                class="profile-email"
+                th:text="${user.email}">
+            email@example.com
+        </p>
+
+
+        <!-- UPLOAD -->
+
+        <form
+                action="/profile/upload"
+                method="post"
+                enctype="multipart/form-data"
+                class="upload-form">
+
+
+            <label class="upload-button">
+
+                Change profile picture
+
+                <input
+                        type="file"
+                        name="profilePicture"
+                        accept="image/*"
+                        onchange="this.form.submit()">
+
+            </label>
+
+
+        </form>
+
+
+        <a href="/profile/edit" class="edit-profile-button">
+            Edit Profile
+        </a>
+
+
+        <div class="profile-stats">
+
+            <div>
+                <strong th:text="${pinCount}">0</strong>
+                <span>Pins</span>
+            </div>
+
+            <div>
+                <strong>0</strong>
+                <span>Followers</span>
+            </div>
+
+            <div>
+                <strong>0</strong>
+                <span>Following</span>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kite Images - Login</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body class="auth-body">
+
+
+    <div class="auth-container">
+
+
+        <!-- LEFT SIDE -->
+
+        <div class="auth-brand">
+
+            <img src="/images/kite-logo3.svg" class="brand-logo" alt="Kite Images">
+            <br>
+
+            <h1>Kite Images</h1>
+
+            <p>
+                Discover ideas.<br>
+                Save inspiration.<br>
+                Create your world.
+            </p>
+
+        </div>
+
+
+        <!-- LOGIN CARD -->
+
+        <div class="auth-card">
+
+            <h2>Welcome back</h2>
+
+            <p class="auth-subtitle">
+                Log in to continue to Kite Images
+            </p>
+
+
+            <div th:if="${error}" class="error-message">
+                <p th:text="${error}"></p>
+            </div>
+
+
+            <form th:action="@{/login}" method="post">
+
+
+                <label>Email</label>
+
+                <input type="email" name="email" placeholder="Enter your email" required>
+
+
+                <label>Password</label>
+
+                <input type="password" name="password" placeholder="Enter your password" required>
+
+
+                <button class="auth-button" type="submit">
+                    Log in
+                </button>
+
+
+            </form>
+
+
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+
+            <p class="register-text">
+
+                Don't have an account?
+
+                <a href="/register">
+                    Create account
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

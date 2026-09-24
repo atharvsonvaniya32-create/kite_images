@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kite Images</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <aside class="sidebar">
+
+        <a href="/home" class="sidebar-logo">
+            <img src="/images/kite-logo3.svg" class="sidebar-logo-img" alt="Kite">
+        </a>
+
+        <a href="/home" class="sidebar-icon active" title="Home">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <path d="M12 3l9 8h-3v9h-5v-6h-2v6H6v-9H3l9-8z"/>
+            </svg>
+        </a>
+
+        <a href="/my-uploads" class="sidebar-icon" title="My Uploads">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+            </svg>
+        </a>
+
+        <a href="/saved" class="sidebar-icon" title="Saved">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+            </svg>
+        </a>
+
+        <a href="/notifications" class="sidebar-icon notif-icon" title="Notifications">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="notif-count" id="notif-badge"></span>
+        </a>
+
+        <a href="/connect" class="sidebar-icon" title="Connect">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+        </a>
+
+        <a href="/messages" class="sidebar-icon" title="Messages">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+        </a>
+
+        <a href="/create" class="sidebar-icon" title="Create">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="16"/>
+                <line x1="8" y1="12" x2="16" y2="12"/>
+            </svg>
+        </a>
+
+        <a href="/profile" class="sidebar-icon" title="Profile">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+            </svg>
+        </a>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
+
+    <div class="main-wrapper">
+
+        <!-- =========================
+             NAVBAR
+        ========================= -->
+
+        <header class="navbar">
+
+            <!-- SEARCH -->
+
+            <form class="search-box" action="/search" method="get">
+
+                <span class="search-icon">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#777" stroke-width="2.5" stroke-linecap="round">
+                        <circle cx="10.5" cy="10.5" r="7"/>
+                        <line x1="15.5" y1="15.5" x2="21" y2="21"/>
+                    </svg>
+                </span>
+
+                <input
+                        type="text"
+                        name="query"
+                        placeholder="Search for ideas...">
+
+            </form>
+
+
+            <!-- RIGHT SIDE -->
+
+            <div class="nav-right">
+
+                <a href="/profile" class="profile">
+
+                    <img
+                            th:if="${user.profilePicture != null}"
+                            th:src="@{'/profile/image/' + ${user.id}}"
+                            alt="Profile">
+
+                    <div
+                            th:if="${user.profilePicture == null}"
+                            class="profile-picture">
+
+                        <span th:text="${user.name.substring(0,1)}">
+                            A
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </header>
+
+
+    <!-- =========================
+         MOBILE SEARCH
+    ========================= -->
+
+    <div class="mobile-search">
+
+        <span>
+            🔍
+        </span>
+
+        <input
+                type="text"
+                placeholder="Search for ideas...">
+
+    </div>
+
+
+        <!-- =========================
+             IMAGE GRID
+        ========================= -->
+
+        <section class="image-grid">
+
+
+            <!-- =========================
+                 REAL DATABASE PINS
+            ========================= -->
+
+            <article
+                    class="pin-card"
+                    th:each="pin : ${pins}">
+
+
+                <!-- IMAGE -->
+
+                <a th:href="@{'/pin/' + ${pin.id}}" class="image-container">
+
+                    <img
+                            th:src="@{'/pins/image/' + ${pin.id}}"
+                            th:alt="${pin.title}">
+
+
+                    <!-- SAVE BUTTON -->
+
+                    <button
+                            class="save-btn"
+                            type="button"
+                            onclick="event.preventDefault(); event.stopPropagation();">
+
+                        Save
+
+                    </button>
+
+
+                    <!-- MORE BUTTON -->
+
+                    <button
+                            class="more-btn"
+                            type="button"
+                            onclick="event.preventDefault(); event.stopPropagation();">
+
+                        •••
+
+                    </button>
+
+                </a>
+
+
+                <!-- PIN INFORMATION -->
+
+                <div class="pin-info">
+
+                    <h3
+                            th:text="${pin.title}">
+                        Pin title
+                    </h3>
+
+                    <p
+                            th:text="${pin.category}">
+                        Category
+                    </p>
+
+
+                    <!-- PIN OWNER -->
+
+                    <div
+                            class="pin-user"
+                            th:if="${pin.user != null}">
+
+                        <span
+                                th:text="${pin.user.name}">
+                            User
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- =========================
+                 NO PINS MESSAGE
+            ========================= -->
+
+            <div
+                    class="empty-pins"
+                    th:if="${#lists.isEmpty(pins)}">
+
+                <h2>
+                    No pins yet
+                </h2>
+
+                <p>
+                    Be the first person to share something.
+                </p>
+
+                <a href="/create">
+                    Create your first Pin
+                </a>
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+
+    <!-- =========================
+         CREATE BUTTON
+    ========================= -->
+
+    <a
+            th:href="@{/create}"
+            class="floating-create">
+
+        +
+
+    </a>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        // =========================
+        // SAVE BUTTONS
+        // =========================
+
+        const saveButtons =
+            document.querySelectorAll(".save-btn");
+
+
+        saveButtons.forEach(button => {
+
+            button.addEventListener("click", function (event) {
+
+                event.stopPropagation();
+
+
+                if (this.classList.contains("saved")) {
+
+                    this.classList.remove("saved");
+
+                    this.textContent = "Save";
+
+                } else {
+
+                    this.classList.add("saved");
+
+                    this.textContent = "Saved";
+
+                }
+
+            });
+
+        });
+
+
+    </script>
+
+    <script>
+        fetch('/api/notifications/unread-count?t=' + Date.now())
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                var badge = document.getElementById('notif-badge');
+                if (badge && data.count > 0) {
+                    badge.textContent = data.count > 9 ? '9+' : data.count;
+                    badge.style.display = 'flex';
+                }
+            });
+    </script>
+
+</body>
+
+</html>

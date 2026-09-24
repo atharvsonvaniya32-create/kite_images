@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile - Kite Images</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body class="profile-body">
+
+<header class="profile-navbar">
+    <div class="profile-logo">
+        <img src="/images/kite-logo3.svg" class="brand-logo" alt="Kite Images">
+    </div>
+    <a href="/logout" class="logout-button">Log out</a>
+</header>
+
+<main class="profile-container">
+
+    <div class="profile-card">
+
+        <h1 style="margin-bottom: 24px;">Edit Profile</h1>
+
+        <form th:action="@{/profile/edit}" method="post" class="edit-profile-form">
+
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" th:value="${user.name}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" th:value="${user.email}" required>
+            </div>
+
+            <div class="form-group">
+                <label>New Password <span style="font-weight: 400; color: #999;">(leave blank to keep current)</span></label>
+                <input type="password" name="password" placeholder="Enter new password">
+            </div>
+
+            <div class="edit-profile-actions">
+                <a href="/profile" class="edit-cancel-btn">Cancel</a>
+                <button type="submit" class="publish-button">Save Changes</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+</body>
+
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Create Pin - Kite Images</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <a href="/home" class="sidebar-logo">
+            <img src="/images/kite-logo3.svg" class="sidebar-logo-img" alt="Kite">
+        </a>
+
+        <a href="/home" class="sidebar-icon" title="Home">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <path d="M12 3l9 8h-3v9h-5v-6h-2v6H6v-9H3l9-8z"/>
+            </svg>
+        </a>
+
+        <a href="/my-uploads" class="sidebar-icon" title="My Uploads">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+            </svg>
+        </a>
+
+        <a href="/saved" class="sidebar-icon" title="Saved">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+            </svg>
+        </a>
+
+        <a href="/notifications" class="sidebar-icon notif-icon" title="Notifications">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="notif-count" id="notif-badge"></span>
+        </a>
+
+        <a href="/connect" class="sidebar-icon" title="Connect">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+        </a>
+
+        <a href="/messages" class="sidebar-icon" title="Messages">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+        </a>
+
+        <a href="/create" class="sidebar-icon active" title="Create">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="16"/>
+                <line x1="8" y1="12" x2="16" y2="12"/>
+            </svg>
+        </a>
+
+        <a href="/profile" class="sidebar-icon" title="Profile">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+            </svg>
+        </a>
+
+    </aside>
+
+<div class="create-container">
+
+    <div class="create-header">
+
+        <h1>Create Pin</h1>
+
+        <p>
+            Share something you love with Kite Images.
+        </p>
+
+    </div>
+
+
+    <form
+            action="/pins/upload"
+            method="post"
+            enctype="multipart/form-data"
+            class="create-form">
+
+
+        <!-- Image -->
+
+        <div class="upload-box">
+
+            <div class="upload-icon">
+                +
+            </div>
+
+            <h2>Choose an image</h2>
+
+            <p>
+                Upload a picture from your computer
+            </p>
+
+            <input
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    required>
+
+        </div>
+
+
+        <!-- Title -->
+
+        <div class="form-group">
+
+            <label>Title</label>
+
+            <input
+                    type="text"
+                    name="title"
+                    placeholder="Give your pin a title"
+                    required>
+
+        </div>
+
+
+        <!-- Category -->
+
+        <div class="form-group">
+
+            <label>Category</label>
+
+            <select name="category" required>
+
+                <option value="">
+                    Select category
+                </option>
+
+                <option value="Photography">
+                    Photography
+                </option>
+
+                <option value="Travel">
+                    Travel
+                </option>
+
+                <option value="Architecture">
+                    Architecture
+                </option>
+
+                <option value="Fashion">
+                    Fashion
+                </option>
+
+                <option value="Nature">
+                    Nature
+                </option>
+
+                <option value="Art">
+                    Art
+                </option>
+
+                <option value="Food">
+                    Food
+                </option>
+
+                <option value="Technology">
+                    Technology
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+                type="submit"
+                class="publish-button">
+
+            Publish Pin
+
+        </button>
+
+    </form>
+
+</div>
+
+    <script>
+        fetch('/api/notifications/unread-count?t=' + Date.now())
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                var badge = document.getElementById('notif-badge');
+                if (badge && data.count > 0) {
+                    badge.textContent = data.count > 9 ? '9+' : data.count;
+                    badge.style.display = 'flex';
+                }
+            });
+    </script>
+
+</body>
+
+</html>
