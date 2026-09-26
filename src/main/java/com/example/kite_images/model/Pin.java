@@ -15,7 +15,6 @@ public class Pin {
     private String category;
 
     @Lob
-    @Column(columnDefinition = "LONGBLOB")
     private byte[] image;
 
     @ManyToOne
