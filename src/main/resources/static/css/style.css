@@ -2491,3 +2491,202 @@ body {
     flex: 1;
     margin-top: 0;
 }
+
+
+/* ==============================
+   MOBILE
+   Sidebar becomes a bottom tab bar,
+   page containers drop the 80px
+   desktop sidebar offset.
+=============================== */
+
+@media (max-width: 768px) {
+
+    /* Prevent iOS Safari from zooming when a field is focused */
+    input,
+    select,
+    textarea {
+        font-size: 16px;
+    }
+
+
+    /* ==============================
+       BOTTOM TAB BAR (was left sidebar)
+    ================================ */
+
+    .sidebar {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        width: 100%;
+        height: 58px;
+
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        gap: 0;
+
+        padding: 0 4px;
+
+        border-right: none;
+        border-top: 1px solid #eee;
+    }
+
+    .sidebar-logo {
+        display: none;
+    }
+
+    .sidebar-icon {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+    }
+
+    /* Sidebar is now at the bottom, so content only needs bottom padding */
+    .main-wrapper {
+        margin-left: 0;
+        padding-bottom: 74px;
+    }
+
+
+    /* ==============================
+       DROP THE 80px SIDEBAR OFFSET
+    ================================ */
+
+    .create-container {
+        margin-left: 0;
+        width: 100%;
+        max-width: 100%;
+        padding: 20px 15px 90px;
+    }
+
+    .pin-detail-wrapper {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 0 15px;
+    }
+
+
+    /* ==============================
+       NAVBAR
+    ================================ */
+
+    .navbar {
+        height: 56px;
+        padding: 0 12px;
+        gap: 8px;
+    }
+
+    .search-icon {
+        display: none;
+    }
+
+
+    /* ==============================
+       PIN DETAIL: STACK THE COLUMNS
+    ================================ */
+
+    .pin-detail-card {
+        grid-template-columns: 1fr;
+        border-radius: 20px;
+    }
+
+    .pin-detail-image {
+        min-height: 0;
+    }
+
+
+    /* ==============================
+       FORMS AND CARDS
+    ================================ */
+
+    .auth-card {
+        padding: 30px 20px;
+    }
+
+    .profile-card {
+        width: 92%;
+        padding: 30px 18px;
+    }
+
+    .big-profile-picture {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-stats {
+        width: 100%;
+    }
+
+
+    /* ==============================
+       HORIZONTALLY SCROLLABLE CHIPS
+    ================================ */
+
+    .categories {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .categories > * {
+        flex-shrink: 0;
+    }
+
+
+    /* ==============================
+       IMAGE GRID
+    ================================ */
+
+    .image-grid {
+        width: 100%;
+        padding: 0 12px;
+        column-gap: 10px;
+    }
+
+
+    /* ==============================
+       CHAT
+    ================================ */
+
+    .chat-container {
+        height: calc(100vh - 56px - 58px);
+    }
+
+    .messages-container {
+        min-height: auto;
+    }
+
+    .conversations-list {
+        padding: 0 15px;
+    }
+
+
+    /* ==============================
+       FLOATING CREATE BUTTON
+       (sits above the tab bar)
+    ================================ */
+
+    .floating-create {
+        bottom: 74px;
+        right: 16px;
+    }
+
+}
+
+
+/* Very small phones */
+@media (max-width: 360px) {
+
+    .sidebar-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .image-grid {
+        columns: 1;
+    }
+
+}
